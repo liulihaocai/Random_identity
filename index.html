@@ -69,13 +69,28 @@
                     </template>
                     <span>查看源码</span>
                   </v-tooltip>
+                  <v-tooltip bottom>
+                    <template v-slot:activator="{ on }">
+                      <v-btn
+                        :href="source"
+                        icon
+                        large
+                        target="_blank"
+                        v-on="on"
+                        v-on:click="dialog=!dialog"
+                      >
+                        <v-icon>mdi-information-outline</v-icon>
+                      </v-btn>
+                    </template>
+                    <span>查看更多</span>
+                  </v-tooltip>
                 </v-toolbar>
                 <v-card-text>
                   <v-form>
 <template><v-subheader>姓名</v-subheader></template>
-<template><div id="vid"><font size="5">{{ id.name }}</font></div></template>
+<template><div id="vid"><font size="5">{{ id.name }}</font><v-tooltip bottom><template v-slot:activator="{ on }"><v-btn :href="source" icon target="_blank" v-on="on" onclick='document.getElementById("copy1").style.display="block";var Url2=document.getElementById("copy1");Url2.select();document.execCommand("Copy");document.getElementById("copy1").style.display="none"'><v-icon>mdi-content-copy</v-icon></v-btn></template><span>复制</span></v-tooltip></div></template>
 <template><v-subheader>身份证号</v-subheader></template>
-<template><div id="vid"><font size="5">{{ id.uid }}</font></div></template>
+<template><div id="vid"><font size="5">{{ id.uid }}</font><v-tooltip bottom><template v-slot:activator="{ on }"><v-btn :href="source" icon target="_blank" v-on="on" onclick='document.getElementById("copy2").style.display="block";var Url2=document.getElementById("copy2");Url2.select();document.execCommand("Copy");document.getElementById("copy2").style.display="none"'><v-icon>mdi-content-copy</v-icon></v-btn></template><span>复制</span></v-tooltip></div></template>
                   </v-form>
                 </v-card-text>
                 <v-card-actions>
@@ -87,6 +102,42 @@
           </v-row>
         </v-container>
       </v-content>
+<textarea cols="0" rows="0" id="copy1">{{ id.name }}</textarea>
+<textarea cols="0" rows="0" id="copy2">{{ id.uid }}</textarea>
+<template>
+  <div class="text-center">
+    <v-dialog
+      v-model="dialog"
+      width="500"
+    >
+      <v-card>
+        <v-card-title
+          class="headline grey lighten-2"
+          primary-title
+        >
+          About
+        </v-card-title>
+        <v-card-text>
+          <br>作者：liulihaocai(琉璃酱)<br>
+          转载/修改请遵守MIT开源协议<br>
+          感谢大家的使用，多多转发～<br><br>
+          免责声明：身份证号大全和姓名由系统随机组合而成，不会涉及任何隐私泄密问题，也非现实生活中真实的身份证号码和真实姓名；身份证号码和姓名仅供测试或用在必须输入身份证号码和姓名的网站上，请不要将身份证号码和姓名用于任何非法用途，且自行承担使用本工具的任何后果和责任。
+        </v-card-text>
+        <v-divider></v-divider>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn
+            color="primary"
+            text
+            @click="dialog = false"
+          >
+            关闭
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+  </div>
+</template>
     </v-app>
 </div>
   <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
@@ -96,9 +147,12 @@
       el: '#idgenerate',
       vuetify: new Vuetify(),
       data: {
+        dialog:false,
         id:{name:rand_name(),uid:rand_id()}
       }
     })
+    document.getElementById("copy1").style.display="none"
+    document.getElementById("copy2").style.display="none"
     function generateuid() {
       vuekey.id.name=rand_name()
       vuekey.id.uid=rand_id()
