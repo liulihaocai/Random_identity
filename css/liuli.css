@@ -1,0 +1,22 @@
+@font-face {
+font-family:LFont;
+src:url("../res/a.ttf");
+}
+
+#vid {
+	text-align: center;
+	vertical-align: middle;
+}
+
+.bg-box {
+	background: url('http://www.dmoe.cc/random.php');
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	font-family:LFont;
+}
+
+.opac {
+	filter: opacity(85%);
+}

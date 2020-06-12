@@ -4,13 +4,9 @@
   <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
-  <style type="text/css">
-#vid{
-  text-align: center;
-  vertical-align: middle;
-}
-  </style>
+  <link href="./css/liuli.css" rel="stylesheet">
   <script src="./js/uid.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/liulihaocai/EasyCopy/copy.min.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
   <title>防沉迷身份讯息生成</title>
 </head>
@@ -19,7 +15,7 @@
     <v-app id="inspire">
       <v-content>
         <v-container
-          class="fill-height"
+          class="bg-box changef fill-height"
           fluid
         >
           <v-row
@@ -31,29 +27,12 @@
               sm="8"
               md="4"
             >
-              <v-card class="elevation-12">
+              <v-card class="elevation-12 opac">
                 <v-toolbar
-                  color="primary"
-                  dark
                   flat
                 >
                   <v-toolbar-title>防沉迷身份讯息生成</v-toolbar-title>
                   <v-spacer></v-spacer>
-                  <v-tooltip bottom>
-                    <template v-slot:activator="{ on }">
-                      <v-btn
-                        :href="source"
-                        icon
-                        large
-                        target="_blank"
-                        v-on="on"
-                        onclick="window.open('https://github.com/liulihaocai/Random_identity/issues')"
-                      >
-                        <v-icon>mdi-bug</v-icon>
-                      </v-btn>
-                    </template>
-                    <span>反馈bug</span>
-                  </v-tooltip>
                   <v-tooltip bottom>
                     <template v-slot:activator="{ on }">
                       <v-btn
@@ -88,29 +67,27 @@
                 <v-card-text>
                   <v-form>
 <template><v-subheader>姓名</v-subheader></template>
-<template><div id="vid"><font size="5">{{ id.name }}</font><v-tooltip bottom><template v-slot:activator="{ on }"><v-btn :href="source" icon target="_blank" v-on="on" onclick='document.getElementById("copy1").style.display="block";var Url2=document.getElementById("copy1");Url2.select();document.execCommand("Copy");document.getElementById("copy1").style.display="none"'><v-icon>mdi-content-copy</v-icon></v-btn></template><span>复制</span></v-tooltip></div></template>
+<template><div id="vid"><font size="5">{{ id.name }}</font><v-tooltip bottom><template v-slot:activator="{ on }"><v-btn :href="source" icon target="_blank" v-on="on" onclick='rcopy.copy(vuekey.id.name)'><v-icon>mdi-content-copy</v-icon></v-btn></template><span>复制</span></v-tooltip></div></template>
 <template><v-subheader>身份证号</v-subheader></template>
-<template><div id="vid"><font size="5">{{ id.uid }}</font><v-tooltip bottom><template v-slot:activator="{ on }"><v-btn :href="source" icon target="_blank" v-on="on" onclick='document.getElementById("copy2").style.display="block";var Url2=document.getElementById("copy2");Url2.select();document.execCommand("Copy");document.getElementById("copy2").style.display="none"'><v-icon>mdi-content-copy</v-icon></v-btn></template><span>复制</span></v-tooltip></div></template>
+<template><div id="vid"><font size="5">{{ id.uid }}</font><v-tooltip bottom><template v-slot:activator="{ on }"><v-btn :href="source" icon target="_blank" v-on="on" onclick='rcopy.copy(vuekey.id.uid)'><v-icon>mdi-content-copy</v-icon></v-btn></template><span>复制</span></v-tooltip></div></template>
                   </v-form>
                 </v-card-text>
                 <v-card-actions>
                   <v-spacer></v-spacer>
-                  <v-btn color="primary" onclick="generateuid()">重新生成</v-btn>
+                  <v-btn color="#009688" dark onclick="generateuid()">重新生成</v-btn>
                 </v-card-actions>
               </v-card>
             </v-col>
           </v-row>
         </v-container>
       </v-content>
-<textarea cols="0" rows="0" id="copy1">{{ id.name }}</textarea>
-<textarea cols="0" rows="0" id="copy2">{{ id.uid }}</textarea>
 <template>
   <div class="text-center">
     <v-dialog
       v-model="dialog"
       width="500"
     >
-      <v-card>
+      <v-card class="opac">
         <v-card-title
           class="headline grey lighten-2"
           primary-title
@@ -127,8 +104,8 @@
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn
-            color="primary"
-            text
+            color="#009688"
+            text dark
             @click="dialog = false"
           >
             关闭
@@ -140,6 +117,7 @@
 </template>
     </v-app>
 </div>
+<div id="ready2copy"></div>
   <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
   <script>
@@ -149,14 +127,13 @@
       data: {
         dialog:false,
         id:{name:rand_name(),uid:rand_id()}
-      }
+      },
     })
-    document.getElementById("copy1").style.display="none"
-    document.getElementById("copy2").style.display="none"
     function generateuid() {
       vuekey.id.name=rand_name()
       vuekey.id.uid=rand_id()
     }
+    var rcopy=EasyCopy.create("ready2copy")
   </script>
 </body>
 </html>
