@@ -1,6 +1,6 @@
 @font-face {
 font-family:LFont;
-src:url("../res/a.ttf");
+src:url("https://cdn.jsdelivr.net/gh/liulihaocai/Random_identity/res/a.ttf");
 }
 
 #vid {
@@ -14,9 +14,12 @@ src:url("../res/a.ttf");
 	width: 100%;
 	height: 100%;
 	position: absolute;
-	font-family:LFont;
 }
 
 .opac {
 	filter: opacity(85%);
+}
+
+.changef{
+	font-family:LFont;
 }
