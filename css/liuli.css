@@ -23,3 +23,7 @@ src:url("https://cdn.jsdelivr.net/gh/liulihaocai/Random_identity/res/a.ttf");
 .changef{
 	font-family:LFont;
 }
+
+.bolder{
+	font-weight:bold;
+}
