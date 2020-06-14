@@ -10,12 +10,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
   <title>防沉迷身份讯息生成</title>
 </head>
-<body>
+<body style="overflow-x: hidden; overflow-y: hidden; ">
   <div id="idgenerate">
     <v-app id="inspire">
-      <v-content>
+      <v-content class="bg-box"><canvas class="fireworks"></canvas></v-content>
         <v-container
-          class="bg-box changef fill-height"
+          class="changef fill-height"
           fluid
         >
           <v-row
@@ -33,7 +33,7 @@
                 >
                   <v-toolbar-title class="bolder">防沉迷身份讯息生成</v-toolbar-title>
                   <v-spacer></v-spacer>
-                  <v-tooltip bottom>
+                  <v-tooltip bottom color="#009688">
                     <template v-slot:activator="{ on }">
                       <v-btn
                         :href="source"
@@ -46,9 +46,9 @@
                         <v-icon>mdi-github</v-icon>
                       </v-btn>
                     </template>
-                    <span>查看源码</span>
+                    <span class="changef">查看源码</span>
                   </v-tooltip>
-                  <v-tooltip bottom>
+                  <v-tooltip bottom color="#009688">
                     <template v-slot:activator="{ on }">
                       <v-btn
                         :href="source"
@@ -61,26 +61,25 @@
                         <v-icon>mdi-information-outline</v-icon>
                       </v-btn>
                     </template>
-                    <span>查看更多</span>
+                    <span class="changef">查看更多</span>
                   </v-tooltip>
                 </v-toolbar>
                 <v-card-text>
                   <v-form>
 <template><v-subheader>姓名</v-subheader></template>
-<template><div id="vid"><font size="5">{{ id.name }}</font><v-tooltip bottom><template v-slot:activator="{ on }"><v-btn :href="source" icon target="_blank" v-on="on" onclick='rcopy.copy(vuekey.id.name)'><v-icon>mdi-content-copy</v-icon></v-btn></template><span>复制</span></v-tooltip></div></template>
+<template><div id="vid"><font size="5">{{ id.name }}</font><v-tooltip bottom color="#009688"><template v-slot:activator="{ on }"><v-btn :href="source" icon target="_blank" v-on="on" onclick='rcopy.copy(vuekey.id.name)'><v-icon>mdi-content-copy</v-icon></v-btn></template><span class="changef">复制</span></v-tooltip></div></template>
 <template><v-subheader>身份证号</v-subheader></template>
-<template><div id="vid"><font size="5">{{ id.uid }}</font><v-tooltip bottom><template v-slot:activator="{ on }"><v-btn :href="source" icon target="_blank" v-on="on" onclick='rcopy.copy(vuekey.id.uid)'><v-icon>mdi-content-copy</v-icon></v-btn></template><span>复制</span></v-tooltip></div></template>
+<template><div id="vid"><font size="5">{{ id.uid }}</font><v-tooltip bottom color="#009688"><template v-slot:activator="{ on }"><v-btn :href="source" icon target="_blank" v-on="on" onclick='rcopy.copy(vuekey.id.uid)'><v-icon>mdi-content-copy</v-icon></v-btn></template><span class="changef">复制</span></v-tooltip></div></template>
                   </v-form>
                 </v-card-text>
                 <v-card-actions>
                   <v-spacer></v-spacer>
-                  <v-btn color="#009688" dark onclick="generateuid()" class="bolder">重新生成</v-btn>
+                  <v-btn color="#009688" text dark onclick="generateuid()" class="bolder">重新生成</v-btn>
                 </v-card-actions>
               </v-card>
             </v-col>
           </v-row>
         </v-container>
-      </v-content>
 <template>
   <div class="text-center">
     <v-dialog
@@ -136,5 +135,8 @@
     }
     var rcopy=EasyCopy.create("ready2copy")
   </script>
+  <script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/fireworks.js"></script>
 </body>
 </html>
